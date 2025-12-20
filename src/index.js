@@ -3,11 +3,44 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HeroSection from './components/layout/heroSection.js';
+import LoginForm from './components/features/auth/loginForm.js';
+import SignupForm from './components/features/auth/signupForm.js';
+import { UserContext } from './components/features/auth/UserContext.js';
+import Home from './components/layout/home.js';
+import { USER_DATA } from './components/features/auth/signupForm.js';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />
+  },
+  {
+    path: "/home",
+    element: <HeroSection />
+  },
+  {
+    path: "/login",
+    element: <LoginForm />
+  },
+  {
+    path: "/signup",
+    element: <SignupForm />
+  },
+  {
+    path: "/dashboard",
+    element: <Home />
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <UserContext.Provider value={USER_DATA}>
+      <RouterProvider router={router} />
+    </UserContext.Provider>
   </React.StrictMode>
 );
 
