@@ -7,7 +7,7 @@ function HeroSection(){
     return(
         <>
         <Header />
-        <main>
+        <main className="hero-section-main-content">
             <div className="featured-items">
                 <Link to={"/login"}>
                 <FeaturedItemPrototype />
@@ -19,8 +19,8 @@ function HeroSection(){
                     <h4>Support small businesses in your community</h4>
                 </div>
 
-                <div className="search-bar">
-                    <input type="text" placeholder="Browse Products"/>
+                <div className="search-bar-container">
+                    <input className="search-bar" type="text" placeholder="Browse Products"/>
                     <button>Search</button>
                 </div>
 

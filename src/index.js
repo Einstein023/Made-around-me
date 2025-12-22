@@ -1,24 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HeroSection from './components/layout/heroSection.js';
 import LoginForm from './components/features/auth/loginForm.js';
 import SignupForm from './components/features/auth/signupForm.js';
 import { UserContext } from './components/features/auth/UserContext.js';
-import Home from './components/layout/home.js';
+import Dashboard from './components/layout/dashboard.js';
 import { USER_DATA } from './components/features/auth/signupForm.js';
+import { Home } from './components/layout/home.js';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
-  },
-  {
-    path: "/home",
     element: <HeroSection />
   },
   {
@@ -31,6 +27,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    element: <Dashboard />
+  },
+  {
+    path: "/home",
     element: <Home />
   }
 ]);
