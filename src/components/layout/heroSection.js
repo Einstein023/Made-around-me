@@ -1,11 +1,29 @@
 import Header from "./header.js";
-// import FeaturedItem from "./components/ui/featuredItem.js";
+import { motion } from 'framer-motion';
 import FeaturedItemPrototype from "../ui/featuredItemsPrototype.js";
 import { Link } from 'react-router-dom';
+import ClickSpark from "../ui/clickspark.js";
+import { useEffect, useState } from 'react'
+import Loading from "./loading.js";
 
 function HeroSection(){
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+        return () => clearTimeout(timer)
+    }, [])
     return(
         <>
+        {loading ? (<Loading />) : (
+        <ClickSpark
+  sparkColor='#FF0000'
+  sparkSize={10}
+  sparkRadius={15}
+  sparkCount={8}
+  duration={400}
+>
         <Header />
         <main className="hero-section-main-content">
             <div className="featured-items">
@@ -13,7 +31,7 @@ function HeroSection(){
                 <FeaturedItemPrototype />
                 </Link>
             </div>
-            <div className="hero-text">
+            <motion.div className="hero-text" initial={{opacity: 0, y: 50}} animate={{opacity: 1, y: 0}} transition={{duration: 0.5, delay: 0.3}}>
                 <div className="heading">
                     <h1>Buy local, Save big, Live better</h1>
                     <h4>Support small businesses in your community</h4>
@@ -30,9 +48,11 @@ function HeroSection(){
                     <button>Become A Seller</button>
                     </Link>
                 </div>
-                
-            </div>
+
+            </motion.div>
         </main>
+        </ClickSpark>
+        )}
         </>
     )
 }

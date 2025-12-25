@@ -37,7 +37,7 @@ function SignupForm(){
             }
             USER_DATA2 = USER_DATA
 
-            navigate('/dashboard', { state: USER_DATA })
+            navigate('/home', { state: USER_DATA })
 
         }
     }

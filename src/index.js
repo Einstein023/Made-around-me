@@ -10,6 +10,7 @@ import { UserContext } from './components/features/auth/UserContext.js';
 import Dashboard from './components/layout/dashboard.js';
 import { USER_DATA } from './components/features/auth/signupForm.js';
 import { Home } from './components/layout/home.js';
+import Loading from './components/layout/loading.js';
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />
+  },
+  {
+    path: '/loading',
+    element: <Loading />
   }
 ]);
 

@@ -1,4 +1,4 @@
-
+import { motion } from 'framer-motion';
 import { useState, useEffect} from 'react'
 
 const initialFeatured = [
@@ -25,12 +25,16 @@ function FeaturedItemPrototype(){
         }, []);
 
         return(
-            <section className="featured-item-container">
+            <motion.section className="featured-item-container"
+            initial={{opacity: 0, x: -50}}
+            animate={{opacity: 1, x: 0}}
+            transition={{duration: 0.5, delay: 0.2}}
+            >
                 {items.map((item, index) => (
                     <img className="featured-img" key={index} src={item.image} alt={`Featured item ${index + 1}`} />
                 ))}
                 <div className="circle" />
-            </section>
+            </motion.section>
         )
 }
 
