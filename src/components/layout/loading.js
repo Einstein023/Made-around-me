@@ -1,10 +1,10 @@
 import { CSSProperties } from "react";
 import { SyncLoader } from "react-spinners";
 
-const override: CSSProperties = {
-  margin: "0 auto",
-  borderColor: "red",
-};
+// const override: CSSProperties = {
+//   margin: "0 auto",
+//   borderColor: "red",
+// };
 
 function Loading() {
 
@@ -15,7 +15,7 @@ function Loading() {
       <SyncLoader
         color={"#8f633d"}
         loading={true}
-        cssOverride={override}
+        // cssOverride={override}
         size={30}
         aria-label="Loading Spinner"
         data-testid="loader"
