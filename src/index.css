@@ -366,10 +366,59 @@ form button:hover{
     color: white;
     text-shadow: 7px 7px 0px var(--cta-clr),
     15px 15px 0px #df761b;
-
 }
-.sweet-loading{
+.fashion{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1rem;
+    width: 100%;
+}
+.fashion img{
+    /* object-fit: cover; */
+    width: 10rem;
+    height: 12rem
+}
+.card{
+    /* background-color: white; */
+    background-color: rgba(234, 175, 124, 0.1);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0.75rem;
+}
+/* .card h3{
+    text-align: left;
+} */
+.product-detail{
+    width: 100%;
+}
+.product-detail h3{
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+}
+.product-detail h5{
+    font-weight: 500;
+    font-size: 1rem;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.p-d-btm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    display: block;
-
+.add-to-cart{
+    padding: 1rem 0.75rem;
+    color: white;
+    background-color: var(--cta-clr);
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
 }

@@ -1,27 +1,40 @@
 import Header from "./header.js"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { UilSearch } from '@iconscout/react-unicons'
-const data = [
-    {id: 1, name: "bag"},
-    {id: 2, name: "car"},
-    {id: 3, name: "ball"},
-    {id: 3, name: "bed"},
-    {id: 4, name: "bottle"},
-    {id: 5, name: "shoes"},
-    {id: 6, name: "shirt"},
-]
+import Loading from "./loading.js"
+// const data = [
+//     {id: 1, name: "bag"},
+//     {id: 2, name: "car"},
+//     {id: 3, name: "ball"},
+//     {id: 3, name: "bed"},
+//     {id: 4, name: "bottle"},
+//     {id: 5, name: "shoes"},
+//     {id: 6, name: "shirt"},
+// ]
 
-const dataCategories = [
-    {name: "Clothes"},
-    {name: "Electronics"},
-    {name: "Home Appliances"},
-    {name: "Books"},
-    {name: "Toys"},
-    {name: "Sports Equipment"},
-    {name: "Bags"},
-    {name: "Footwear"},
-]
+// const staticDataCategories = [
+//     {name: "Clothes"},
+//     {name: "Electronics"},
+//     {name: "Home Appliances"},
+//     {name: "Books"},
+//     {name: "Toys"},
+//     {name: "Sports Equipment"},
+//     {name: "Bags"},
+//     {name: "Footwear"},
+// ]
 export function Home(){
+    const [data, setData] = useState(null)
+    const dataCategories = data ? Array.from(new Set(data.map(item => item.category))) : []
+    useEffect(() => {
+        fetch('https://fakestoreapi.com/products')
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch(error => console.error(error))
+    }, [])
+    console.log(data)
+
+
+
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredData, setFilteredData] = useState(data);
     const handleSearch =(event) => {
@@ -44,10 +57,14 @@ export function Home(){
 
         }
     }
+   
     return (
-        <div>
-            <Header />
-            <div className="Home-search-container">
+
+        <>
+            { !data ? (<Loading />) : (
+                <div>
+                <Header />
+                <div className="Home-search-container">
             <UilSearch size={20} className="UilSearch"/>
             <input type="text" placeholder="Search products, bags, shirts, items" value={searchTerm} onChange={handleSearch} className="search-bar home-search"/>
             </div>
@@ -58,12 +75,35 @@ export function Home(){
             <section className="home-welcome-section">
                <h4>Categories</h4>
                 <div className="home-categories">
-                    {dataCategories.map((category, index) => <button className="category-btn" key={index}>{category.name}</button> )}
+                    {dataCategories.map(category => (
+                        <button className="category-btn" key={category}>{category}</button>
+                    ))}
+                </div>
+            </section>
+            <section className="gallery">
+                <div className="fashion">
+                    {
+                        data.map(item => (
+                            <div className="card" key={item.id}>
+                                <div className="img-container">
+                                <img src={item.image} alt={item.title} />
+                                </div>
+                                <div className="product-detail">
+                                <h5 title={item.title}>{item.title}</h5>
+                                <div className="p-d-btm">
+                                <h3>${item.price}</h3>
+                                <button className="add-to-cart">Add To Cart</button>
+                                </div>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </section>
             </main>
-
-        </div>
+            </div>
+)}
+        </>
 
     )
 }
